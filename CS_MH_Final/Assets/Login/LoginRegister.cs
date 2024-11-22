@@ -12,8 +12,8 @@ public class LoginRegister : MonoBehaviour
     public TextMeshProUGUI displayText;
     public UnityEvent onLoggedIn;
 
-    private Color green = new Color(138/255f, 229/255f, 131/255f);
-    private Color red = new Color(165/255f, 16/255f, 16/255f);
+    private Color gold = new Color(183/255f, 153/255f, 13/255f);
+    private Color cream = new Color(242/255f, 244/255f, 203/255f);
 
     [HideInInspector]
     public string playFabId;
@@ -39,11 +39,11 @@ public class LoginRegister : MonoBehaviour
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest,
             result =>
             {
-                SetDisplayText(result.PlayFabId, green);
+                SetDisplayText(result.PlayFabId, cream);
             },
             error =>
             {
-                SetDisplayText(error.ErrorMessage, red);
+                SetDisplayText(error.ErrorMessage, gold);
             }
             );
     }
