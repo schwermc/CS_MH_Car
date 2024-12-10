@@ -6,14 +6,16 @@ using UnityEngine.Events;
 
 public class LoginRegister : MonoBehaviour
 {
+    public GameObject rooms;
+
     public TMP_InputField usernameInput;
     public TMP_InputField passwordInput;
 
     public TextMeshProUGUI displayText;
     public UnityEvent onLoggedIn;
 
-    private Color gold = new Color(183/255f, 153/255f, 13/255f);
-    private Color cream = new Color(242/255f, 244/255f, 203/255f);
+    //private Color gold = new Color(183/255f, 153/255f, 13/255f);
+    //private Color cream = new Color(242/255f, 244/255f, 203/255f);
 
     [HideInInspector]
     public string playFabId;
@@ -39,11 +41,11 @@ public class LoginRegister : MonoBehaviour
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest,
             result =>
             {
-                SetDisplayText(result.PlayFabId, cream);
+                SetDisplayText(result.PlayFabId, Color.green);
             },
             error =>
             {
-                SetDisplayText(error.ErrorMessage, gold);
+                SetDisplayText(error.ErrorMessage, Color.red);
             }
             );
     }
@@ -59,12 +61,12 @@ public class LoginRegister : MonoBehaviour
         PlayFabClientAPI.LoginWithPlayFab(loginRequest,
             result =>
             {
-                Debug.Log("Logged in as: " + result.PlayFabId);
-
                 playFabId = result.PlayFabId;
 
                 if(onLoggedIn != null)
                         onLoggedIn.Invoke();
+                
+                rooms.SetActive(true);
             },
             error => Debug.Log(error.ErrorMessage)
             );

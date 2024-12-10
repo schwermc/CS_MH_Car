@@ -1,22 +1,20 @@
-//using System.Collections;
-//using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using Unity.VisualScripting;
 
-public class NetworkManager : MonoBehaviourPunCallbacks
+public class NetworkManger : MonoBehaviourPunCallbacks
 {
     public int maxPlayers = 10;
 
-    public static NetworkManager instance;
+    // instance
+    public static NetworkManger instance;
 
-    void Awake()
+    private void Awake()
     {
         instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         // connect to the master server
         PhotonNetwork.ConnectUsingSettings();
@@ -24,7 +22,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("We've connected to the master server!");
+        // Debug.Log("We've connected to the master server!");
+        PhotonNetwork.JoinLobby();
     }
 
     // attempts to create a room
@@ -32,6 +31,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = (byte)maxPlayers;
+
         PhotonNetwork.CreateRoom(roomName, options);
     }
 
@@ -41,8 +41,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(roomName);
     }
 
-    public void ChangeScene(string sceneName)
+    [PunRPC]
+    public void ChangeScene(string scenename)
     {
-        PhotonNetwork.LoadLevel(sceneName);
+        PhotonNetwork.LoadLevel(scenename);
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        PhotonNetwork.LoadLevel("Menu");
     }
 }
