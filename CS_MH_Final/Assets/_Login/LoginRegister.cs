@@ -68,7 +68,10 @@ public class LoginRegister : MonoBehaviour
                 
                 rooms.SetActive(true);
             },
-            error => Debug.Log(error.ErrorMessage)
+            error =>
+            {
+                SetDisplayText(error.ErrorMessage, Color.red);
+            }
             );
     }
 

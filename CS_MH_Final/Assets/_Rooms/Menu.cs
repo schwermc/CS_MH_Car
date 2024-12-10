@@ -4,8 +4,6 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEditor.SearchService;
-using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
 {
@@ -27,6 +25,9 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
     [Header("Lobby Browser")]
     public RectTransform roomListContainer;
     public GameObject roomButtonPrefab;
+
+    [HideInInspector]
+    public string map;
 
     private List<GameObject> roomButtons = new List<GameObject>();
     private List<RoomInfo> roomList = new List<RoomInfo>();
@@ -51,6 +52,9 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
             PhotonNetwork.CurrentRoom.IsVisible = true;
             PhotonNetwork.CurrentRoom.IsOpen = true;
         }
+
+        // Set map to the first map
+        map = "LightBlue";
     }
 
     // changes the currently visible screen
@@ -138,7 +142,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
         PhotonNetwork.CurrentRoom.IsVisible = false;
 
         // tell everyone to load the game scene
-        NetworkManger.instance.photonView.RPC("ChangeScene", RpcTarget.All, "Game");
+        NetworkManger.instance.photonView.RPC("ChangeScene", RpcTarget.All, map);
     }
 
     public void OnLeaveLobbyButton()
@@ -193,6 +197,12 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
     {
         Debug.Log("OnRoomListUpdate called from Photon");
         roomList = allRooms;
+    }
+
+    public void setSceneButton(TMP_Text mapName)
+    {
+        map = (string)mapName.text;
+        Debug.Log("Changed map to: " + mapName.text);
     }
 
 }

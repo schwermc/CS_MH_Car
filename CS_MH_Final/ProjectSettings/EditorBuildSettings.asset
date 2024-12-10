@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/LightBlue.unity
     guid: 00ce12518cdea1f40bb13309c3b3d82c
+  - enabled: 1
+    path: Assets/Scenes/DarkBlue.unity
+    guid: 95a880dc568c5fe4eb8c03743113a8cf
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
