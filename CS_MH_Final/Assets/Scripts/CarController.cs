@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 using Photon.Realtime;
-public class CarController : MonoBehaviour
+public class CarController : MonoBehaviourPun
 {
     public float acceleration;
     public float turnSpeed;
