@@ -27,9 +27,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         instance = this;
     }
 
+    private void Start()
+    {
+        players = new CarController[PhotonNetwork.PlayerList.Length];
+        photonView.RPC("ImInGame", RpcTarget.All);
+    }
+
     [PunRPC]
     void ImInGame()
     {
+        Debug.Log("Im in game");
         playersInGame++;
 
         if (playersInGame == PhotonNetwork.PlayerList.Length);
@@ -38,6 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void SpawnPlayers()
     {
+        Debug.Log("spawn player");
         // Instantiate the player across the nertwork
         GameObject playerObj = PhotonNetwork.Instantiate(playerPrefabLocation, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
 

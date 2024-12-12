@@ -46,7 +46,7 @@ public class CarController : MonoBehaviourPunCallbacks, IPunObservable
         id = player.ActorNumber;
         photonPlayer = player;
 
-        GameManager.instance.cars[id - 1] = this;
+        GameManager.instance.cars.Add(this);
 
         if (!photonView.IsMine)
         {
