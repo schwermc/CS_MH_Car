@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 using Photon.Realtime;
-public class CarController : MonoBehaviourPun
+public class CarController : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float acceleration;
     public float turnSpeed;
@@ -29,12 +29,30 @@ public class CarController : MonoBehaviourPun
 
     public Rigidbody rig;
 
+    public int id;
+    public Player photonPlayer;
+
     void Start()
     {
         startModelOffset = carModel.transform.localPosition;
         GameManager.instance.cars.Add(this);
         //transform.position = GameManager.instance.spawnPoints[GameManager.instance.cars.Count - 1].position;
         rig.position = GameManager.instance.spawnPoints[GameManager.instance.cars.Count - 1].position;
+    }
+
+    [PunRPC]
+    public void Initialize(Player player)
+    {
+        id = player.ActorNumber;
+        photonPlayer = player;
+
+        GameManager.instance.cars[id - 1] = this;
+
+        if (!photonView.IsMine)
+        {
+            rig.isKinematic = true;
+        }
+
     }
     void Update()
     {
@@ -97,5 +115,14 @@ public class CarController : MonoBehaviourPun
     public void OnTurnInput(InputAction.CallbackContext context)
     {
         turnInput = context.ReadValue<float>();
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+            stream.SendNext(curTrackZone);
+
+        else if (stream.IsReading)
+            curTrackZone = (TrackZone)stream.ReceiveNext();
     }
 }

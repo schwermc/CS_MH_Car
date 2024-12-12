@@ -1,11 +1,16 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Realtime;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public List<CarController> cars = new List<CarController>();
     public Transform[] spawnPoints;
+    public CarController[] players;
+    int playersInGame;
+    public string playerPrefabLocation;
 
     public float positionUpdateRate = 0.05f;
     private float lastPositionUpdateTime;
@@ -20,6 +25,27 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
+
+    [PunRPC]
+    void ImInGame()
+    {
+        playersInGame++;
+
+        if (playersInGame == PhotonNetwork.PlayerList.Length);
+        SpawnPlayers();
+    }
+
+    void SpawnPlayers()
+    {
+        // Instantiate the player across the nertwork
+        GameObject playerObj = PhotonNetwork.Instantiate(playerPrefabLocation, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
+
+        // Get the player script
+        CarController playerScript = playerObj.GetComponent<CarController>();
+
+        // Initialize the player
+        playerScript.photonView.RPC("Initialize", RpcTarget.All, PhotonNetwork.LocalPlayer);
     }
 
     void Update()
@@ -59,6 +85,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [PunRPC]
     // updates which car is coming first, second, etc
     void UpdateCarRacePositions()
     {
@@ -89,6 +116,7 @@ public class GameManager : MonoBehaviour
         return 0;
     }
 
+    [PunRPC]
     // called when a car has crossed the finish line
     public void CheckIsWinner(CarController car)
     {
@@ -103,6 +131,14 @@ public class GameManager : MonoBehaviour
 
             for (int x = 0; x < uis.Length; ++x)
                 uis[x].GameOver(uis[x].car == car);
+
+            Invoke("GoBackToMenu", 3.0f);
         }
+    }
+
+    void GoBackToMenu()
+    {
+        PhotonNetwork.LeaveRoom();
+        NetworkManager.instance.ChangeScene("Menu");
     }
 }

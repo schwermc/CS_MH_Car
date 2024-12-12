@@ -2,12 +2,12 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class NetworkManger : MonoBehaviourPunCallbacks
+public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public int maxPlayers = 10;
 
     // instance
-    public static NetworkManger instance;
+    public static NetworkManager instance;
 
     private void Awake()
     {

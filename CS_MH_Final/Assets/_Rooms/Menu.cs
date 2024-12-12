@@ -54,7 +54,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
         }
 
         // Set map to the first map
-        map = "LightBlue";
+        map = "Bumps";
     }
 
     // changes the currently visible screen
@@ -105,7 +105,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void OnCreateButton(TMP_InputField roomNameInput)
     {
-        NetworkManger.instance.CreateRoom(roomNameInput.text);
+        NetworkManager.instance.CreateRoom(roomNameInput.text);
     }
 
     public override void OnJoinedRoom()
@@ -142,7 +142,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
         PhotonNetwork.CurrentRoom.IsVisible = false;
 
         // tell everyone to load the game scene
-        NetworkManger.instance.photonView.RPC("ChangeScene", RpcTarget.All, map);
+        NetworkManager.instance.photonView.RPC("ChangeScene", RpcTarget.All, map);
     }
 
     public void OnLeaveLobbyButton()
@@ -185,7 +185,7 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void OnJoinRoomButton(string roomName)
     {
-        NetworkManger.instance.JoinRoom(roomName);
+        NetworkManager.instance.JoinRoom(roomName);
     }
 
     public void OnRefreshButton()
