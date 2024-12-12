@@ -3745,11 +3745,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4921798496361452742, guid: 3f0c16dbede39514497fd6ab70ddd434, type: 3}
---- !u!1 &1777094880 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 328971780187776935, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-  m_PrefabInstance: {fileID: 232154920423075314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1807346962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3878,6 +3873,8 @@ MonoBehaviour:
   - {fileID: 1374092794}
   - {fileID: 80117377}
   - {fileID: 163224429}
+  players: []
+  playerPrefabLocation: 
   positionUpdateRate: 0.05
   gameStarted: 0
   playersToBegin: 1
@@ -3916,7 +3913,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 1777094880}
+  m_PlayerPrefab: {fileID: 0}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -4565,11 +4562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGate: 0
---- !u!4 &2022638637 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5883471418368947557, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-  m_PrefabInstance: {fileID: 232154920423075314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2026079496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4599,7 +4591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17907d428ae33c240ba400ebf84219ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2022638637}
+  target: {fileID: 0}
   followSpeed: 10
   rotateSpeed: 5
 --- !u!4 &2026079498
@@ -4865,67 +4857,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGate: 0
---- !u!1001 &232154920423075314
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 328971780187776935, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_Name
-      value: Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 328971780187776935, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.967
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.161
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4934,7 +4865,6 @@ SceneRoots:
   - {fileID: 1837810858}
   - {fileID: 1390663991}
   - {fileID: 177604770}
-  - {fileID: 232154920423075314}
   - {fileID: 2059510171}
   - {fileID: 457178778}
   - {fileID: 2026079498}
