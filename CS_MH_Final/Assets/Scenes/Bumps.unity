@@ -2671,7 +2671,7 @@ MonoBehaviour:
   positionUpdateRate: 0.05
   gameStarted: 0
   playersToBegin: 1
-  lapsToWin: 2
+  lapsToWin: 4
 --- !u!114 &1812278036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3574,10 +3574,6 @@ PrefabInstance:
     - target: {fileID: 328971780187776935, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
       propertyPath: m_Name
       value: Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 328971780187776935, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1655345492346772068, guid: b2ac3e2a8155ff2489aad6430da71a81, type: 3}
       propertyPath: m_LocalPosition.x

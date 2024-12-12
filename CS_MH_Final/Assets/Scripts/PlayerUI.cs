@@ -5,6 +5,7 @@ using TMPro;
 public class PlayerUI : MonoBehaviour
 {
     public TextMeshProUGUI carPositionText;
+    public TextMeshProUGUI lapsDown;
     public CarController car;
     public TextMeshProUGUI countdownText;
     public TextMeshProUGUI gameOverText;
@@ -12,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         carPositionText.text = car.racePosition.ToString() + " / " + GameManager.instance.cars.Count.ToString();
+        lapsDown.text = "Laps: " + (car.curLap - 1).ToString() + "/" + GameManager.instance.lapsToWin.ToString();
     }
     public void StartCountdownDisplay()
     {
