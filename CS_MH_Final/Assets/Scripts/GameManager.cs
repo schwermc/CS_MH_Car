@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void ImInGame()
     {
-        Debug.Log("Im in game");
+        //Debug.Log("Im in game");
         playersInGame++;
 
         if (playersInGame == PhotonNetwork.PlayerList.Length);
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void SpawnPlayers()
     {
-        Debug.Log("spawn player");
+        //Debug.Log("spawn player");
         // Instantiate the player across the nertwork
         GameObject playerObj = PhotonNetwork.Instantiate(playerPrefabLocation, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
 
